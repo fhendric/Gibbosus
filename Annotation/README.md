@@ -36,7 +36,13 @@ braker.pl --cores=9 --species=ogibo_mRNA --genome=/kyukon/scratch/gent/vo/000/gv
 
 ## EVidenceModeler (EVM)
 
-Before running EVM, GTF/GFF files were first parsed to EVM compatible GFF3 format. 
+Before running EVM, GTF/GFF files were first parsed to EVM compatible GFF3 format. The following directory structure was created to store the EVM-compatible GFF3 files:
+
+evm_inputs/
+├── abinitio/
+├── transcripts/
+└── proteins/
+
 
 ### Parse Braker GTF file
 
