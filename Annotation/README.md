@@ -47,7 +47,7 @@ evm_inputs/
 
 ### Parse Braker GTF file
 
-GTF file `augustus.hints.mRNA.gtf` produced by **BREAKER** was parsed using the `braker_GTF_to_EVM_GFF3.pl` tool available in the EvmUtils in EVM using the following script:
+GTF file `augustus.hints.mRNA.gtf` produced by **BRAKER** was parsed using the `braker_GTF_to_EVM_GFF3.pl` tool available in the EvmUtils in EVM using the following script:
 ```bash
 module load EVidenceModeler/2.1.0-foss-2024a
 $EVM_HOME/EvmUtils/misc/braker_GTF_to_EVM_GFF3.pl augustus.hints.mRNA.gtf > ./evm_inputs/abinitio/Ogibo.braker.evm.gff3
