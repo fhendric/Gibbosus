@@ -36,9 +36,13 @@ braker.pl --cores=9 --species=ogibo_mRNA --genome=/kyukon/scratch/gent/vo/000/gv
 
 ## EVidenceModeler (EVM)
 
-Before running EVM, GTF/GFF files were first parsed to GFF3 format that is compatible with EVM. 
+Before running EVM, GTF/GFF files were first parsed to EVM compatible GFF3 format. 
 
 ### Parse Braker GTF file
 
-Parsing the Braker GTF file `augustus.hints.mRNA.gtf` was done
+GTF file `augustus.hints.mRNA.gtf` produced by **BREAKER** was parsed using the `braker_GTF_to_EVM_GFF3.pl` tool available in the EvmUtils in EVM using the following script:
+```bash
+module load EVidenceModeler/2.1.0-foss-2024a
+$EVM_HOME/EvmUtils/misc/braker_GTF_to_EVM_GFF3.pl augustus.hints.mRNA.gtf > ./evm_inputs/abinitio/Ogibo.braker.evm.gff3
+```
 ### Parse Protein GTF file
