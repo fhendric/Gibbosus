@@ -70,27 +70,43 @@ OV210_03.hifi_reads.demux.bam
 OV210_03.hifi_reads.demux.bam.pbi
 ```
 
-3/ Reads were then cleaned and polyA tail removed with isoseq refine (run_isoseq.sh):
 
+### 3. Clean and polyA-tail removal
+
+Reads were then cleaned and polyA tail removed with isoseq refine (`run_isoseq.sh`):
+
+```bash
 module load Isoseq
-
 isoseq refine --require-polya OV210_03.hifi_reads.demux.bam primers.fasta OV210_03.flnc.bam
+```
 
-Resulting files are
+Resulting files are:
+
+```
 OV210_03.flnc.bam
 OV210_03.flnc.bam.pbi
 OV210_03.flnc.consensusreadset.xml
 OV210_03.flnc.filter_summary.report.json
 OV210_03.flnc.report.csv
+````
 
-4/ Transcripts were subsequently clustered (run_isoseq.sh)
+### 4. Clustering transcripts
 
+Transcripts were subsequently clustered with `isoseq cluster`:
+
+```
 isoseq cluster OV210_03.flnc.bam OV210_03.flnc.clustered.bam
+```
 
 with resulting files:
+
+````
 OV210_03.flnc.clustered.bam
 OV210_03.flnc.clustered.bam.pbi
-and all remaining OV210_03.flnc.clustered* files.
+```
+
+and all remaining `OV210_03.flnc.clustered* files`.
+
 
 5/ Clustered transcripts were mapped to the genome with minimap2 (run_minimap2_IsoSeq.sh)
 
