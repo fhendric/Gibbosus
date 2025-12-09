@@ -210,6 +210,8 @@ The merged **StringTie** output `stringtie_merged.gtf`contains both the transcri
 
 `grep -v 'AUGUSTUS' stringtie_merged.gtf > stringtie.gtf`
 
+$EVM_HOME/EvmUtils/misc/taco_gtf_to_alignment_gff3.pl OV210_03.flnc.collapsed.hq.gff > test
+
 
 
 
