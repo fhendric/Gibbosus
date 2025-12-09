@@ -52,7 +52,7 @@ OV210_03_HiFi.fastq.gz
 
 ### 2. Primer removal
 
-Reads were demultiplexed by Macrogen (multiplex barcode removed), but still contain the cDNA primers and polyA tail. These were removed with **lima** (performed at HPC KULeuven) as **lima** could not be installed on the HPC.
+Reads were demultiplexed by Macrogen (multiplex barcode removed), but still contain the cDNA primers and polyA tail. These were removed with **lima** (performed at HPC KULeuven as **lima** could not be installed on the HPC).
 
 Used primer sequences are:
 
