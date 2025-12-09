@@ -1,6 +1,12 @@
 # Annotation
 
-Genome annotation using (i) *abinitio* gene prediction using BRAKER/AUGUSTUS, (ii) proteins from *H. graminicola*, (iii) transcript assembly using Stringtie and (iv) mapping of PacBio HiFi mRNA reads. The different types of evidence were then compined with EVidenceModeler to obtain a final set of gene predictions. 
+Genome annotation using:
+(i) *abinitio* gene prediction using BRAKER/AUGUSTUS
+(ii) mapping proteins from the related species *H. graminicola* with **miniprot**
+(iii) transcript assembly using **Stringtie** 
+(iv) mapping of PacBio HiFi mRNA reads. 
+
+The different types of evidence were then compined with **EVidenceModeler (EVM)** to obtain a final set of gene predictions. 
 
 ## Braker/Augustus
 
@@ -52,10 +58,19 @@ GTF file `augustus.hints.mRNA.gtf` produced by **BRAKER** was parsed using the `
 module load EVidenceModeler/2.1.0-foss-2024a
 $EVM_HOME/EvmUtils/misc/braker_GTF_to_EVM_GFF3.pl augustus.hints.mRNA.gtf > ./evm_inputs/abinitio/Ogibo.braker.evm.gff3
 ```
-### Parse Protein GTF file
+### Parse miniprot Protein GFF file
 
-GFF2 file `Ogib_2.0_HgramProt.gff` produced by **Miniprot** was parsed using the `miniprot_GFF_2_EVM_GFF3.py` tool available in the EvmUtils in EVM using the following script:
+GFF2 file `Ogib_2.0_HgramProt.gff` produced by **miniprot** was parsed using the `miniprot_GFF_2_EVM_GFF3.py` tool available in the EvmUtils in EVM using the following script:
 ```bash
 module load EVidenceModeler/2.1.0-foss-2024a
+
+### Parse StringTie transcripts file
+
+The merged **StringTie** output `stringtie_merged.gtf`contains both the transcripts assembled using mRNAseq data and the non-overlapping *abinitio* gene predictions from Braker/Augustus. First remove the Braker/Augustus records as they are already included as evidence the Braker GTF file:
+
+`grep -v 'AUGUSTUS' stringtie_merged.gtf > stringtie.gtf`
+
+
+
 python $EVM_HOME/EvmUtils/misc/miniprot_GFF_2_EVM_GFF3.py Ogib_2.0_HgramProt.gff > ./evm_inputs/proteins/Ogibo.HgramProt.evm.gff3
 ```
