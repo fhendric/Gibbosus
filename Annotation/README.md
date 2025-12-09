@@ -73,7 +73,7 @@ OV210_03.hifi_reads.demux.bam.pbi
 
 ### 3. Clean and polyA-tail removal
 
-Reads were then cleaned and polyA tail removed with isoseq refine (`run_isoseq.sh`):
+Reads were then cleaned and polyA tail removed with isoseq refine (`run_isoseq.sh`) to generate **FLNC (Full-Length Non-Chimeric)** reads:
 
 ```bash
 module load Isoseq
