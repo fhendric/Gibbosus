@@ -44,9 +44,11 @@ braker.pl --cores=9 --species=ogibo_mRNA --genome=/kyukon/scratch/gent/vo/000/gv
 
 Raw ccs read files (Macrogen):
 
-`OV210_03.hifi_reads.bam
+```
+OV210_03.hifi_reads.bam
 OV210_03.hifi_reads.bam.pbi
-OV210_03_HiFi.fastq.gz`
+OV210_03_HiFi.fastq.gz
+```
 
 ### 2. Primer removal
 
@@ -54,18 +56,19 @@ Reads were demultiplexed by Macrogen (multiplex barcode removed), but still cont
 
 Used primer sequences are:
 
-`bash
+```
 >primer_5p
 GCAATGAAGTCGCAGGGTTGGG
 >primer_3p
 AAGCAGTGGTATCAACGCAGAGTAC
-`
+```
 
 Resulting files are:
 
-`OV210_03.hifi_reads.demux.bam
+```
+OV210_03.hifi_reads.demux.bam
 OV210_03.hifi_reads.demux.bam.pbi
-`
+```
 
 3/ Reads were then cleaned and polyA tail removed with isoseq refine (run_isoseq.sh):
 
