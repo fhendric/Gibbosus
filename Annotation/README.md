@@ -108,7 +108,9 @@ OV210_03.flnc.clustered.bam.pbi
 and all remaining `OV210_03.flnc.clustered* files`.
 
 
-5/ Clustered transcripts were mapped to the genome with minimap2 (run_minimap2_IsoSeq.sh)
+### 5. Mapping of clustered transcripts
+
+Clustered transcripts were mapped to the genome with minimap2 (run_minimap2_IsoSeq.sh)
 
 minimap2 -t 9 -ax splice:hq -uf /kyukon/scratch/gent/vo/000/gvo00032/Gibbosus/fasta/Ogib_2.0.fasta /kyukon/scratch/gent/vo/000/gvo00032/Gibbosus/isoseq/OV210_03.flnc.clustered.hq.fasta.gz | samtools sort -@10 -o Ogib_2.0.isoseq.clustered.hq.bam
 
