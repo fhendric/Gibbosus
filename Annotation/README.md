@@ -162,8 +162,7 @@ Make table to convert collapsed versus clustered names and add read counts
 ```bash
 grep '>' OV210_03.flnc.collapsed.hq.fasta | sed 's/|P.*|/ /g' | sed 's/>//g' > OV210_03.flnc.clustered2collapsed_conversion.hq.txt
 less OV210_03.flnc.collapsed.hq.flnc_count.txt | sed 's/^.*,//g' > abundances.txt
-paste  OV210_03.flnc.clustered2collapsed_conversion.hq.txt abundances.txt > brol.txt
-mv brol.txt OV210_03.flnc.clustered2collapsed_conversion.hq.txt
+paste  OV210_03.flnc.clustered2collapsed_conversion.hq.txt abundances.txt > OV210_03.flnc.clustered2collapsed_conversion.hq.txt
 ```
 
 ### 9. Final GFF
