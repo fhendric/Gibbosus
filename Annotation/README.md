@@ -63,6 +63,7 @@ $EVM_HOME/EvmUtils/misc/braker_GTF_to_EVM_GFF3.pl augustus.hints.mRNA.gtf > ./ev
 GFF2 file `Ogib_2.0_HgramProt.gff` produced by **miniprot** was parsed using the `miniprot_GFF_2_EVM_GFF3.py` tool available in the EvmUtils in EVM using the following script:
 ```bash
 module load EVidenceModeler/2.1.0-foss-2024a
+python $EVM_HOME/EvmUtils/misc/miniprot_GFF_2_EVM_GFF3.py Ogib_2.0_HgramProt.gff > ./evm_inputs/proteins/Ogibo.HgramProt.evm.gff3
 ```
 
 ### Parse StringTie transcripts file
@@ -73,5 +74,4 @@ The merged **StringTie** output `stringtie_merged.gtf`contains both the transcri
 
 
 
-python $EVM_HOME/EvmUtils/misc/miniprot_GFF_2_EVM_GFF3.py Ogib_2.0_HgramProt.gff > ./evm_inputs/proteins/Ogibo.HgramProt.evm.gff3
-```
+
