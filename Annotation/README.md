@@ -182,6 +182,13 @@ evm_inputs/
 └── proteins/
 ```
 
+To check if a gff3 file is compatible for EVM, you can use the `/gff3_gene_prediction_file_validator.pl` tool available in the EvmUtils in EVM: 
+
+```bash
+module load EVidenceModeler/2.1.0-foss-2024a
+$EVM_HOME/EvmUtils/gff3_gene_prediction_file_validator.pl input.gff3
+```
+
 ### Parse Braker GTF file
 
 GTF file `augustus.hints.mRNA.gtf` produced by **BRAKER** was parsed using the `braker_GTF_to_EVM_GFF3.pl` tool available in the EvmUtils in EVM using the following script:
