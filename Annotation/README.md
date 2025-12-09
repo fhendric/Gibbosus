@@ -40,6 +40,70 @@ braker.pl --cores=9 --species=ogibo_mRNA --genome=/kyukon/scratch/gent/vo/000/gv
 
 ## IsoSeq transcripts (PacBio HiFi mRNA reads)
 
+### 1. Used files:
+
+Raw ccs read files (Macrogen):
+
+`OV210_03.hifi_reads.bam
+OV210_03.hifi_reads.bam.pbi
+OV210_03_HiFi.fastq.gz`
+
+### 2. Primer removal
+
+Reads were demultiplexed by Macrogen (multiplex barcode removed), but still contain the cDNA primers and polyA tail. These were removed with **lima** (performed at HPC KULeuven) as **lima** could not be installed on the HPC.
+
+Used primer sequences are:
+
+`bash
+>primer_5p
+GCAATGAAGTCGCAGGGTTGGG
+>primer_3p
+AAGCAGTGGTATCAACGCAGAGTAC
+`
+
+Resulting files are:
+
+`OV210_03.hifi_reads.demux.bam
+OV210_03.hifi_reads.demux.bam.pbi
+`
+
+3/ Reads were then cleaned and polyA tail removed with isoseq refine (run_isoseq.sh):
+
+module load Isoseq
+
+isoseq refine --require-polya OV210_03.hifi_reads.demux.bam primers.fasta OV210_03.flnc.bam
+
+Resulting files are
+OV210_03.flnc.bam
+OV210_03.flnc.bam.pbi
+OV210_03.flnc.consensusreadset.xml
+OV210_03.flnc.filter_summary.report.json
+OV210_03.flnc.report.csv
+
+4/ Transcripts were subsequently clustered (run_isoseq.sh)
+
+isoseq cluster OV210_03.flnc.bam OV210_03.flnc.clustered.bam
+
+with resulting files:
+OV210_03.flnc.clustered.bam
+OV210_03.flnc.clustered.bam.pbi
+and all remaining OV210_03.flnc.clustered* files.
+
+5/ Clustered transcripts were mapped to the genome with minimap2 (run_minimap2_IsoSeq.sh)
+
+minimap2 -t 9 -ax splice:hq -uf /kyukon/scratch/gent/vo/000/gvo00032/Gibbosus/fasta/Ogib_2.0.fasta /kyukon/scratch/gent/vo/000/gvo00032/Gibbosus/isoseq/OV210_03.flnc.clustered.hq.fasta.gz | samtools sort -@10 -o Ogib_2.0.isoseq.clustered.hq.bam
+
+Ogib_2.0.isoseq.clustered.hq.bam
+Ogib_2.0.isoseq.clustered.hq.bam.bai
+
+6/ Mapping reads with pbmm2
+
+6a/ Install pbmm2
+
+module load Miniconda3
+conda create --prefix /user/gent/404/vsc40419/scratch_vo/Gibbosus/isoseq/pbmm2  pbmm2
+
+
 ## EVidenceModeler (EVM)
 
 Before running EVM, GTF/GFF files were first parsed to EVM compatible GFF3 format. The following directory structure was created to store the EVM-compatible GFF3 files:
