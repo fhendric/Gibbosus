@@ -1,6 +1,7 @@
 # Annotation
 
-Genome annotation using:
+The Ogib_2.0 genome was annotated by first performing the following individual gene prdiction tools:
+- [Whole-Genome Resequencing Data](./whole_genome_resequencing/)
 (i) *abinitio* gene prediction using BRAKER/AUGUSTUS
 (ii) mapping proteins from the related species *H. graminicola* with **miniprot**
 (iii) transcript assembly using **Stringtie** 
