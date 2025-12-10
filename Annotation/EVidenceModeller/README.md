@@ -1,4 +1,4 @@
-## EVidenceModeler (EVM)
+# EVidenceModeler (EVM)
 
 Before running EVM, GTF/GFF files were first parsed to EVM compatible GFF3 format. The following directory structure was created to store the EVM-compatible GFF3 files:
 
