@@ -2,13 +2,13 @@
 
 The Ogib_2.0 genome was annotated using the following gene prediction tools:
 
-1. [abinitio using BRAKER/AUGUSTUS](./Braker/)
-(i) *abinitio* gene prediction using BRAKER/AUGUSTUS
-(ii) mapping proteins from the related species *H. graminicola* with **miniprot**
-(iii) transcript assembly using **Stringtie** 
-(iv) mapping of PacBio HiFi mRNA reads. 
+- [BRAKER/AUGUSTUS](./Braker/): *abinitio* gene prediction using BRAKER/AUGUSTUS trained with mRNAseq data
+- [Protein mappings](./Proteins/): mapping protein sequences from the related species *H. graminicola* with **miniprot**
+- [StringTie](./StringTie/): transcript assembly of short-read mRNAseq using **Stringtie**
+- [IsosSeq](./IsoSeq/): mapping of PacBio HiFi reads of full-length mRNA (IsoSeq)
 
 The different types of evidence were then compined with **EVidenceModeler (EVM)** to obtain a final set of gene predictions. 
+- [EvidenceModeler](./EVidenceModeller/): mapping of PacBio HiFi reads of full-length mRNA (IsoSeq)
 
 ## Braker/Augustus
 
