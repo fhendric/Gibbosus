@@ -25,7 +25,7 @@ samtools index "$BAM_OUT"
 ````
 Mappings were visualized in JBROWSE and transcript reads mapping to DMRT at scaffold_11 (dmrt) and scaffold_39 (dmrt_G) representing a full length unique haplotype or isoform were selected manually and stored in `./DMRT_snps/transcripts_flnc/transcripts_flnc_dmrt.fasta`.
 
-Transcript reads were aligned (MEGA) and transcript regions showing unambiguous alignment were selected and stored in `./DMRT_snps/transcripts_flnc/transcripts_flnc_dmrt_conserved.fasta`  
+Transcript reads were aligned (MEGA) and conserved transcript regions showing unambiguous alignment were selected and stored in `./DMRT_snps/transcripts_flnc/transcripts_flnc_dmrt_conserved.fasta`  
 
 
 
