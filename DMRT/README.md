@@ -1,6 +1,6 @@
 # Workflow to reconstruct DMRT sequences
 
-### 1. Select flnc IsoSeq transcripts
+### 1. Selection of flnc IsoSeq transcripts and regions
 
 Full-length non-chimeric IsoSeq reads (`./isoseq/OV210_03.flnc.fasta`) were mapped to the genome with minimap2.
 
@@ -23,6 +23,10 @@ BAM_OUT=/kyukon/scratch/gent/vo/000/gvo00032/Gibbosus/minimap/IsoSeq_vs_Ogib_2.0
 minimap2 -ax splice:hq --secondary=no -uf "$GENOME" "$READS" | samtools view -b | samtools sort -o "$BAM_OUT"
 samtools index "$BAM_OUT"
 ````
+Mappings were visualized in JBROWSE and transcript reads mapping to DMRT at scaffold_11 (dmrt) and scaffold_39 (dmrt_G) representing a full length unique haplotype or isoform were selected manually and stored in `./DMRT_snps/transcripts_flnc_dmrt.fasta`.
+
+Transcript reads were aligned and transcript regions showing unambiguous alignment were selected.  
+
 
 
 ### 2. Extract reads mapping to the 
