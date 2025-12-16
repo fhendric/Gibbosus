@@ -2,7 +2,27 @@
 
 ### 1. Select flnc IsoSeq transcripts
 
-Full-length non-chimeric IsoSeq reads were mapped to the genome with minimap2.
+Full-length non-chimeric IsoSeq reads (`./isoseq/OV210_03.flnc.fasta`) were mapped to the genome with minimap2.
+
+```bash
+#!/bin/bash
+#PBS -N minimap2_isoseq
+#PBS -l walltime=08:00:00
+#PBS -l nodes=1:ppn=8
+
+module load minimap2
+module load SAMtools
+
+cd /kyukon/scratch/gent/vo/000/gvo00032/Gibbosus/isoseq
+
+GENOME=/kyukon/scratch/gent/vo/000/gvo00032/Gibbosus/fasta/Ogib_2.0.fasta
+READS=/kyukon/scratch/gent/vo/000/gvo00032/Gibbosus/isoseq/OV210_03.flnc.fasta
+BAM_OUT=/kyukon/scratch/gent/vo/000/gvo00032/Gibbosus/minimap/IsoSeq_vs_Ogib_2.0/OV210_03.flnc.minimap2.bam
+
+
+minimap2 -ax splice:hq --secondary=no -uf "$GENOME" "$READS" | samtools view -b | samtools sort -o "$BAM_OUT"
+samtools index "$BAM_OUT"
+````
 
 
 ### 2. Extract reads mapping to the 
