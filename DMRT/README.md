@@ -1,6 +1,6 @@
 # Workflow to reconstruct DMRT sequences
 
-### 1. Selection of flnc IsoSeq transcripts and regions
+### 1. Selection of flnc IsoSeq transcripts and conserved regions
 
 Full-length non-chimeric IsoSeq reads (`./isoseq/OV210_03.flnc.fasta`) were mapped to the genome with minimap2.
 
