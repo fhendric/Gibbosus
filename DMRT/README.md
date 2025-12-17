@@ -32,6 +32,35 @@ Three BED files were generated for downstream analyses were generated:
 - `dmrt_iso2_coding_s11.bed` (BED file with the exons of isoform2 at s11)
 - `dmrt_iso2_coding_s39.bed` (BED file with the exons of isoform2 at s39)
 
+#### 3.2. SNP calling
+
+Reconstruction of the *dmrt* isoform 2 sequences for all individuals, including outgroups, was performed via SNP calling using BCFtools. Because the *dmrt* gene has two paralogs, sequencing reads from outgroup species, presumed to have only a single *dmrt* copy, may map equally well to both copies, resulting in low mapping quality scores. To prevent these reads from being discarded, we used raw BAM files without filtering for low-quality mappings. SNPs were called with BCFtools and restricted to the exonic regions of interest. We further required that genotypes be called as heterozygous or homozygous for the alternative allele only if supported by at least two reads carrying the alternative allele; positions with only a single supporting read were called homozygous for the reference allele. This approach minimizes the risk of calling sequencing errors as heterozygous sites. SNP calling and filtering were performed using the following script:
+
+```bash
+#!/bin/bash
+#PBS -N bcftools
+#PBS -l walltime=01:00:00
+#PBS -l nodes=1:ppn=8
+
+cd /kyukon/scratch/gent/vo/000/gvo00032/Gibbosus/DMRT
+
+# Load modules
+module load BCFtools
+
+# Define directories and files
+GENOME="/kyukon/scratch/gent/vo/000/gvo00032/Gibbosus/fasta/Ogib_2.0.fasta"
+BAM="/kyukon/scratch/gent/vo/000/gvo00032/Gibbosus/bam_reseq/raw"
+VCF_RAW="./vcf/Ogib2_0.dmrt_iso2.raw.vcf.gz"
+VCF_NOINDEL="./vcf/Ogib2_0.dmrt_iso2.noindel.vcf.gz"
+BED="./bed/dmrt_iso2_coding.bed"
+
+# SNP calling
+bcftools mpileup -R "$BED" -a AD,DP,SP -Ou -f "$GENOME" "$BAM"/D1086_G.bam "$BAM"/D1090_G.bam "$BAM"/D1091_T.bam "$BAM"/D601_T.bam "$BAM"/H002_T.bam "$BAM"/H007_G.bam "$BAM"/Ofusc.bam "$BAM"/Oretu.bam "$BAM"/Otril.bam "$BAM"/OV001_G.bam "$BAM"/OV002_T.bam "$BAM"/OV208_T.bam "$BAM"/OV213_G.bam "$BAM"/PO002_T.bam "$BAM"/PO004_G.bam "$BAM"/PU001_G.bam "$BAM"/PU002_T.bam "$BAM"/SE001_G.bam "$BAM"/SE003_T.bam "$BAM"/W791_G.bam "$BAM"/W815_T.bam "$BAM"/W816_G.bam "$BAM"/W818_T.bam | bcftools call -m -f GQ,GP -Oz -o "$VCF_RAW"
+
+bcftools view -V indels,mnps "$VCF_RAW" -Ou | bcftools +setGT -Ou  -- -t q -n 0 -i 'FMT/AD[*:1]<2' | bcftools +setGT -Oz -o "$VCF_NOINDEL"  -- -t q -n . -i 'FMT/DP<1'
+```
+
+
 
 
 
