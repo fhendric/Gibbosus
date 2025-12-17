@@ -28,9 +28,9 @@ We assessed the phylogenetic relationship between the two *dmrt* paralogs in rel
 
 Three BED files were generated for downstream analyses were generated:
 
-- `dmrt_isoseq_coding.bed` (BED file with the exons of isoform2 at both s11 and s39)
-- `dmrt_isoseq_coding_s11.bed` (BED file with the exons of isoform2 at s11)
-- `dmrt_isoseq_coding_s39.bed` (BED file with the exons of isoform2 at s39)
+- `dmrt_iso2_coding.bed` (BED file with the exons of isoform2 at both s11 and s39)
+- `dmrt_iso2_coding_s11.bed` (BED file with the exons of isoform2 at s11)
+- `dmrt_iso2_coding_s39.bed` (BED file with the exons of isoform2 at s39)
 
 
 
