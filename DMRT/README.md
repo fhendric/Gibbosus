@@ -9,6 +9,8 @@ Isoforms were manually curated in MEGA and stored in `./DMRT/transcripts_isoseq`
 - `dmrt_isoseq_coding.fasta` (coding sequence of *dmrt* transcripts)
 - `dmrt_isoseq_coding.aa` (translated coding sequence of *dmrt* transcripts)
 
+Visual inspection in MEGA showed that the coding sequences of isoform2 at scaffold_11 and scaffolds_39 aligned perfectly.  
+
 ### 2. Mapping of *dmrt* transcripts
 
 Protein sequences of the *dmrt* isoseq transcripts were mapped to the genome with **miniprot**. Mapping were performed to both the entire genome - a reduced version of the genome was made that only includes the *dmrt* containg scaffolds i.e. scaffold_11 and scaffold_39 - and the G-locus (scaffold_39) only to identify the paralogous regions of the *dmrt* isoforms on the G-locus:
@@ -17,6 +19,21 @@ Protein sequences of the *dmrt* isoseq transcripts were mapped to the genome wit
 miniprot --gff ../genome/Ogib_2.0.reduced.fasta ../transcripts_isoseq/dmrt_isoseq_coding.aa > dmrt_isoseq_coding.gff
 miniprot --gff ../genome/scaffold_39.fasta ../transcripts_isoseq/dmrt_isoseq_coding.aa > dmrt_isoseq_coding_scaf39.gff
 ```
+
+### 3. Phylogenetic analysis of *dmrt* transcripts
+
+We assessed the phylogenetic relationship between the two *dmrt* paralogs in relation to their sequence at the outgroup species. Due to the clear alignment of the different exons of isoform2, the analysis was restricted to this isoform only.  
+
+#### 3.1. Preparation of BED files
+
+Three BED files were generated for downstream analyses were generated:
+
+- `dmrt_isoseq_coding.bed` (BED file with the exons of isoform2 at both s11 and s39)
+- `dmrt_isoseq_coding_s11.bed` (BED file with the exons of isoform2 at s11)
+- `dmrt_isoseq_coding_s39.bed` (BED file with the exons of isoform2 at s39)
+
+
+
 
 
 ```bash
