@@ -26,7 +26,7 @@ We assessed the phylogenetic relationship between the two *dmrt* paralogs in rel
 
 #### 3.1. Preparation of BED files
 
-Three BED files were generated for downstream analyses were generated:
+Three BED files were generated from the `dmrt_isoseq_coding.gff` file for downstream analyses:
 
 - `dmrt_iso2_coding.bed` (BED file with the exons of isoform2 at both s11 and s39)
 - `dmrt_iso2_coding_s11.bed` (BED file with the exons of isoform2 at s11)
@@ -128,4 +128,19 @@ done
 
 echo "Concatenated multi-fasta written to $output_file"
 ```
+#### 3.4. Obtaining the *dmrt* Sequences for outgroup species *Hylyphantes graminicola*
+
+Analysis performed in the `./DMRT/hgram` folder. Map the *dmrt* coding region to the *H. graminicola* reference genome with miniprot:
+
+```bash
+miniprot --gff ../../Hgram_genome/IOZCAS_Hgram_genomeAssembly_1.0.fa ../transcripts_isoseq/dmrt_isoseq_coding.aa > dmrt_iso2_hgram.gff
+````
+Generate a BED file from the `dmrt_iso2_hgram.gff` (`dmrt_iso2_hgram.bed`), which is then used to extract the sequence from the *H.graminicola* genome.
+
+```bash
+bedtools getfasta -fi ../../Hgram_genome/IOZCAS_Hgram_genomeAssembly_1.0.fa -bed dmrt_iso2_hgram.bed -fo dmrt_iso2_hgram.fasta
+```
+
+
+
 
