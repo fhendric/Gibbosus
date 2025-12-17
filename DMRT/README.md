@@ -1,8 +1,16 @@
 # Workflow to reconstruct DMRT sequences
 
-### 1. Selection of flnc IsoSeq transcripts and conserved regions
+### 1. Selection of dmrt transcripts
 
-Full-length non-chimeric IsoSeq reads (`./isoseq/OV210_03.flnc.fasta`) were mapped to the genome with minimap2.
+Unique clustered isoform transcripts (`./isoseq/OV210_03.flnc.clustered.hq.fasta`) mapping to the dmrt genes were manually selected in JBrowse. Four different isoforms were identified (iso1 - iso4) at the dmrt cluster at scaffold_11 and one at the dmrt_G cluster. Alignment of the isoforms in MEGA revealed that the dmrt_G isoform corresponded to isoform 2 at the dmrt (scaffold_11) cluster. 
+Isoforms were manually curated in MEGA and stored in `./DMRT/transcripts_isoseq`:
+
+- `dmrt_isoseq_full.fasta` (original isoseq full length dmrt transcripts, including UTR)
+- `dmrt_isoseq_coding.fasta` (coding sequence of dmrt transcripts)
+- `dmrt_isoseq_coding.aa` (translated coding sequence of dmrt transcripts)
+
+### 2. Mapping of dmrt transcripts
+
 
 ```bash
 #!/bin/bash
