@@ -59,69 +59,73 @@ bcftools mpileup -R "$BED" -a AD,DP,SP -Ou -f "$GENOME" "$BAM"/D1086_G.bam "$BAM
 
 bcftools view -V indels,mnps "$VCF_RAW" -Ou | bcftools +setGT -Ou  -- -t q -n 0 -i 'FMT/AD[*:1]<2' | bcftools +setGT -Oz -o "$VCF_NOINDEL"  -- -t q -n . -i 'FMT/DP<1'
 ```
+Output files are in./DMRT/vcf:
 
+`Ogib2_0.dmrt_iso2.raw.vcf.gz`
+`Ogib2_0.dmrt_iso2.noindel.vcf.gz`
 
+#### 3.3. Reconstructing individual *dmrt* Sequences
 
-
-
+Individual *dmrt* sequences were reconstructed based on the genotypes in `Ogib2_0.dmrt_iso2.noindel.vcf.gz` with `bcftools consensus` with the following script: 
 
 ```bash
 #!/bin/bash
-#PBS -N minimap2_isoseq
-#PBS -l walltime=08:00:00
+#PBS -N consensus
+#PBS -l walltime=01:00:00
 #PBS -l nodes=1:ppn=8
 
-module load minimap2
+cd /kyukon/scratch/gent/vo/000/gvo00032/Gibbosus/DMRT
+
+# Load modules
+module load BCFtools
 module load SAMtools
-
-cd /kyukon/scratch/gent/vo/000/gvo00032/Gibbosus/isoseq
-
-GENOME=/kyukon/scratch/gent/vo/000/gvo00032/Gibbosus/fasta/Ogib_2.0.fasta
-READS=/kyukon/scratch/gent/vo/000/gvo00032/Gibbosus/isoseq/OV210_03.flnc.fasta
-BAM_OUT=/kyukon/scratch/gent/vo/000/gvo00032/Gibbosus/minimap/IsoSeq_vs_Ogib_2.0/OV210_03.flnc.minimap2.bam
-
-
-minimap2 -ax splice:hq --secondary=no -uf "$GENOME" "$READS" | samtools view -b | samtools sort -o "$BAM_OUT"
-samtools index "$BAM_OUT"
-````
-Mappings were visualized in JBROWSE and transcript reads mapping to DMRT at scaffold_11 (dmrt) and scaffold_39 (dmrt_G) representing a full length unique haplotype or isoform were selected manually and stored in `./DMRT_snps/transcripts_flnc/transcripts_flnc_dmrt.fasta`.
-
-Transcript reads were aligned (MEGA) and conserved transcript regions showing unambiguous alignment were selected and stored in `./DMRT_snps/transcripts_flnc/transcripts_flnc_dmrt_conserved.fasta`  
-
-
-
-### 2. Extract reads mapping to the 
-
-```bash
-#!/bin/bash
-
-#PBS -N samtools
-#PBS -l walltime=04:00:00
-#PBS -l nodes=1:ppn=8
-
-module load SAMtools/1.18-GCC-12.3.0
-
-cd /kyukon/scratch/gent/vo/000/gvo00032/Gibbosus/
+module load BEDTools
 
 # Read sample name from file based on array task ID
 SAMPLE=$(sed -n "${PBS_ARRAYID}p" ./samples/samples.txt)
 
-# Make directories to store reads
-#mkdir ./DMRT_denovo/reads/"$SAMPLE"
+# Define directories and files
+GENOME="/kyukon/scratch/gent/vo/000/gvo00032/Gibbosus/DMRT_snps/genome/Ogib_2.0.reduced.fasta"
+VCF_NOINDEL="./vcf/Ogib2_0.dmrt_iso2.noindel.vcf.gz"
+BED="./bed/dmrt_iso2_coding.bed"
+CONSENSUS="./consensus"
 
-# Define files
-BED=/kyukon/scratch/gent/vo/000/gvo00032/Gibbosus/DMRT_denovo/bed/dmrt_conserved.bed
-BAM_IN="/kyukon/scratch/gent/vo/000/gvo00032/Gibbosus/bam_reseq/raw"
-BAM_OUT="/kyukon/scratch/gent/vo/000/gvo00032/Gibbosus/DMRT_denovo/bam"
-FASTQ_OUT="/kyukon/scratch/gent/vo/000/gvo00032/Gibbosus/DMRT_denovo/fastq"
+# Generate consensus sequence
+bcftools consensus --fasta-ref "$GENOME" --missing N --samples "$SAMPLE"  -o "$CONSENSUS/${SAMPLE}.fa" "$VCF_NOINDEL"
 
-# Extract reads
-samtools view -b -L "$BED" "$BAM_IN/${SAMPLE}.bam" | samtools sort -n > "$BAM_OUT/${SAMPLE}.dmrt.bam"
-samtools index "$BAM_OUT/${SAMPLE}.dmrt.bam"
-samtools view -b "$BAM_OUT/${SAMPLE}.dmrt.bam" | samtools fastq -1 "$FASTQ_OUT/${SAMPLE}_R1.dmrt.fastq" -2 "$FASTQ_OUT/${SAMPLE}_R2.dmrt.fastq" -0 /dev/null -s /dev/null -n
+# Index consensus FASTA
+samtools faidx "$CONSENSUS/${SAMPLE}.fa"
+
+# Extract regions from fasta
+bedtools getfasta -fi "$CONSENSUS/${SAMPLE}.fa" -bed ./bed/dmrt_iso2_coding_s11.bed -fo "$CONSENSUS/${SAMPLE}.scaffold_11.fa"
+bedtools getfasta -fi "$CONSENSUS/${SAMPLE}.fa" -bed ./bed/dmrt_iso2_coding_s39.bed -fo "$CONSENSUS/${SAMPLE}.scaffold_39.fa"
 ```
+Fasta files of scaffold_11 and scaffold_39 were then placed in the folders `./DMRT/consensus/scaffold_11` and `./DMRT/consensus/scaffold_39` respectively. A multifasta file that concatenates all sequences was generated with the script:
 
+```bash
+#!/bin/bash
 
+# Folder containing your fasta files
+input_folder="."   # change to your folder
+output_file="dmrt_iso2_scaf39.fasta"
 
+# Empty the output file if it exists
+> "$output_file"
 
+# Loop over all fasta files in the folder
+for file in "$input_folder"/*.fasta "$input_folder"/*.fa; do
+    # Get the filename without path and extension
+    filename=$(basename "$file")
+    individual_name="${filename%.*}"
+
+    # Concatenate all sequences in the file into a single line, skipping any lines starting with ">"
+    sequence=$(grep -v "^>" "$file" | tr -d "\n")
+
+    # Write to the output file with the individual's name as header
+    echo ">$individual_name" >> "$output_file"
+    echo "$sequence" >> "$output_file"
+done
+
+echo "Concatenated multi-fasta written to $output_file"
+```
 
