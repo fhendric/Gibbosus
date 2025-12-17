@@ -11,6 +11,13 @@ Isoforms were manually curated in MEGA and stored in `./DMRT/transcripts_isoseq`
 
 ### 2. Mapping of dmrt transcripts
 
+Protein sequences of the isoseq transcripts were mapped to the genome with miniprot. Mapping were performed to both the entire genome and the G-locus (scaffold_39) only to identify the paralogous regions of the dmrt isoforms on the G-locus:
+
+```bash
+miniprot --gff ../genome/Ogib_2.0.reduced.fasta ../transcripts_isoseq/dmrt_isoseq_coding.aa > dmrt_isoseq_coding.gff
+miniprot --gff ../genome/scaffold_39.fasta ../transcripts_isoseq/dmrt_isoseq_coding.aa > dmrt_isoseq_coding_scaf39.gff
+```
+
 
 ```bash
 #!/bin/bash
