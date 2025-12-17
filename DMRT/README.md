@@ -1,17 +1,17 @@
 # *dmrt* analysis
 
-### 1. Selection of dmrt transcripts
+### 1. Selection of *dmrt* transcripts
 
-Unique clustered isoform transcripts (`./isoseq/OV210_03.flnc.clustered.hq.fasta`) mapping to the dmrt genes were manually selected in JBrowse. Four different isoforms were identified (iso1 - iso4) at the dmrt cluster at scaffold_11 and one at the dmrt_G cluster. Alignment of the isoforms in MEGA revealed that the dmrt_G isoform corresponded to isoform 2 at the dmrt (scaffold_11) cluster. 
+Unique clustered isoform transcripts (`./isoseq/OV210_03.flnc.clustered.hq.fasta`) mapping to the *dmrt* genes were manually selected in JBrowse. Four different isoforms were identified (iso1 - iso4) at the *dmrt* cluster at scaffold_11 and one at the *dmrt_G* cluster. Alignment of the isoforms in MEGA revealed that the *dmrt_G* isoform corresponded to isoform 2 at the dmrt (scaffold_11) cluster. 
 Isoforms were manually curated in MEGA and stored in `./DMRT/transcripts_isoseq`:
 
-- `dmrt_isoseq_full.fasta` (original isoseq full length dmrt transcripts, including UTR)
-- `dmrt_isoseq_coding.fasta` (coding sequence of dmrt transcripts)
-- `dmrt_isoseq_coding.aa` (translated coding sequence of dmrt transcripts)
+- `dmrt_isoseq_full.fasta` (original isoseq full length *dmrt* transcripts, including UTR)
+- `dmrt_isoseq_coding.fasta` (coding sequence of *dmrt* transcripts)
+- `dmrt_isoseq_coding.aa` (translated coding sequence of *dmrt* transcripts)
 
-### 2. Mapping of dmrt transcripts
+### 2. Mapping of *dmrt* transcripts
 
-Protein sequences of the isoseq transcripts were mapped to the genome with **miniprot**. Mapping were performed to both the entire genome - a reduced version of the genome was made that only includes the *dmrt* containg scaffolds i.e. scaffold_11 and scaffold_39 - and the G-locus (scaffold_39) only to identify the paralogous regions of the *dmrt* isoforms on the G-locus:
+Protein sequences of the *dmrt* isoseq transcripts were mapped to the genome with **miniprot**. Mapping were performed to both the entire genome - a reduced version of the genome was made that only includes the *dmrt* containg scaffolds i.e. scaffold_11 and scaffold_39 - and the G-locus (scaffold_39) only to identify the paralogous regions of the *dmrt* isoforms on the G-locus:
 
 ```bash
 miniprot --gff ../genome/Ogib_2.0.reduced.fasta ../transcripts_isoseq/dmrt_isoseq_coding.aa > dmrt_isoseq_coding.gff
