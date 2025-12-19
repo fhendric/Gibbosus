@@ -133,14 +133,28 @@ echo "Concatenated multi-fasta written to $output_file"
 Analysis performed in the `./DMRT/hgram` folder. Map the *dmrt* coding region to the *H. graminicola* reference genome with miniprot:
 
 ```bash
+cd ./DMRT/hgram
 miniprot --gff ../../Hgram_genome/IOZCAS_Hgram_genomeAssembly_1.0.fa ../transcripts_isoseq/dmrt_isoseq_coding.aa > dmrt_iso2_hgram.gff
 ````
 Generate a BED file from the `dmrt_iso2_hgram.gff` (`dmrt_iso2_hgram.bed`), which is then used to extract the sequence from the *H.graminicola* genome.
 
 ```bash
+cd ./DMRT/hgram
 bedtools getfasta -fi ../../Hgram_genome/IOZCAS_Hgram_genomeAssembly_1.0.fa -bed dmrt_iso2_hgram.bed -fo dmrt_iso2_hgram.fasta
 ```
 
+#### 3.5. Generate aligned multifasta
+
+DMRT_iso2 sequences of *Oedothorax* and *Hylyphantes* were combined and aligned with **MUSCLE** and stored in `./DMRT/multifasta/dmrt_iso2_multifasta.fasta`
+
+#### 3.6. Phylogenetic analysis
+
+Phylogenetic trees of the DMRT sequences were performed with IQtree and raxml.
 
 
+
+```bash
+module load RAxML-NG/1.2.0-GCC-12.3.0
+raxml-ng --msa ../multifasta/dmrt_iso2_multifasta.fasta --model GTR+G --outgroup Hgram --bs-trees 1000 --threads 4 --prefix dmrt_iso2 --all
+```
 
