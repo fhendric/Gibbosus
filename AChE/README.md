@@ -35,11 +35,23 @@ Output files are `ache.isoseq.all.transcripts.fasta.transdecoder.cds` and `ache.
 
 ### 1.3 COBALT alignment of AChE transcripts
 
-Peptide sequences were aligned in COBALT and stored under `./all/cobalt/ache.isoseq.all.transcripts.fasta.transdecoder.cobalt.fasta`. Fasta headers were simplified using the command:
+Peptide sequences were aligned using COBALT (https://www.ncbi.nlm.nih.gov/tools/cobalt/re_cobalt.cgi) and stored under `./all/cobalt/ache.isoseq.all.transcripts.fasta.transdecoder.cobalt.fasta`. Fasta headers were simplified using the command:
 
 ```bash
 cat ache.isoseq.all.transcripts.fasta.transdecoder.cobalt.fasta | sed 's/^>[^|]*|/>/' | sed 's/GENE.*$//' > ache.isoseq.all.transcripts.fasta.transdecoder.cobalt.fasta
 ```
+One sequence was clearly partial and removed: PB.7749.4:784184-799177(-)|transcript/17778.p1
+
+Poorly aligned parts of the alignment were removed with trimAl:
+
+```bash
+module load trimAl/1.5.0-GCCcore-13.3.0
+trimal -in ache.isoseq.all.transcripts.fasta.transdecoder.cobalt.fasta -out ache.isoseq.all.transcripts.fasta.transdecoder.cobalt.trimal.fasta -strict
+```
+
+
+
+
 
 
 
