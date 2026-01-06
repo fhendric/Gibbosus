@@ -12,7 +12,10 @@ and generated a list of all respective isoseq genes, transcripts and isoforms. F
 
 `ache.isoseq.all.transcripts.list` => List of most abundant transcript of each AChE gene (isoseq)
 
-Nucleotide sequences of all AChE transcripts were selected (`grep -w -f ache.isoseq.all.transcripts.list ../../isoseq/OV210_03.flnc.collapsed.hq.fasta > ache.isoseq.all.transcripts.fasta`
+Nucleotide sequences of all AChE transcripts were selected:
+```bash
+grep -w -f ache.isoseq.all.transcripts.list ../../isoseq/OV210_03.flnc.collapsed.hq.fasta > ache.isoseq.all.transcripts.fasta
+```
 
 ### Alignment of AChE transcripts
 
