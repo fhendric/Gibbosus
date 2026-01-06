@@ -1,6 +1,6 @@
 # AChE analysis
 
-## 1. Analysis of all AChE transcripts
+## 1. Relationship between all *AChE* paralogs
 
 ### 1.1 Selection of AChE transcripts
 
