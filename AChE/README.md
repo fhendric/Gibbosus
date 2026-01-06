@@ -19,6 +19,22 @@ Nucleotide sequences of all AChE transcripts were selected:
 grep -w -f ache.isoseq.all.transcripts.list ../../isoseq/OV210_03.flnc.collapsed.hq.fasta > ache.isoseq.all.transcripts.fasta
 ```
 
+### 1.2 Translation of AChE transcripts
+
+Identification of the candidate coding sequences and the predicted protein sequences was performed using TransDecoder. 
+
+```bash
+module load TransDecoder/5.7.1-GCC-12.3.0
+curl -L https://cpanmin.us | perl - App::cpanminus
+cpanm install DB_File
+cpanm install URI::Escape
+TransDecoder.LongOrfs -t ache.isoseq.all.transcripts.fasta
+TransDecoder.Predict -t ache.isoseq.all.transcripts.fasta
+```
+
+
+likely coding 
+
 ### 1.2 Alignment of AChE transcripts
 
 
