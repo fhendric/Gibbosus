@@ -31,11 +31,15 @@ cpanm install URI::Escape
 TransDecoder.LongOrfs -t ache.isoseq.all.transcripts.fasta
 TransDecoder.Predict -t ache.isoseq.all.transcripts.fasta
 ```
+Output files are `ache.isoseq.all.transcripts.fasta.transdecoder.cds` and `ache.isoseq.all.transcripts.fasta.transdecoder.pep`
 
+### 1.3 COBALT alignment of AChE transcripts
 
-likely coding 
+Peptide sequences were aligned in COBALT and stored under `./all/cobalt/ache.isoseq.all.transcripts.fasta.transdecoder.cobalt.fasta`. Fasta headers were simplified using the command:
 
-### 1.2 Alignment of AChE transcripts
+```bash
+cat ache.isoseq.all.transcripts.fasta.transdecoder.cobalt.fasta | sed 's/^>[^|]*|/>/' | sed 's/GENE.*$//' > ache.isoseq.all.transcripts.fasta.transdecoder.cobalt.fasta
+```
 
 
 
