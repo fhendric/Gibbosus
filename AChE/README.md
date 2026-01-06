@@ -1,6 +1,8 @@
 # AChE analysis
 
-### Selection of AChE transcripts
+## 1. Analysis of all AChE transcripts
+
+### 1.1 Selection of AChE transcripts
 
 In folder `./AChE/all`. We first selected all isoseq transcripts identified as "Cholinesterase" and "Acetylcholinesterase" using the command:
 `grep 'holinesterase' ./blast_isoseq/Ogib_2.0_IsoSeq.swissprot.blastout.txt`
@@ -17,7 +19,7 @@ Nucleotide sequences of all AChE transcripts were selected:
 grep -w -f ache.isoseq.all.transcripts.list ../../isoseq/OV210_03.flnc.collapsed.hq.fasta > ache.isoseq.all.transcripts.fasta
 ```
 
-### Alignment of AChE transcripts
+### 1.2 Alignment of AChE transcripts
 
 
 
