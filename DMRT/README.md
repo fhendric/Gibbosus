@@ -159,11 +159,11 @@ cd ./DMRT/hgram
 bedtools getfasta -fi ../../Hgram_genome/IOZCAS_Hgram_genomeAssembly_1.0.fa -bed dmrt_iso2_hgram.bed -fo dmrt_iso2_hgram.fasta
 ```
 
-#### 3.5. Generate aligned multifasta
+#### 2.3.5. Generate aligned multifasta
 
 DMRT_iso2 sequences of *Oedothorax* and *Hylyphantes* were combined and aligned with **MUSCLE** and stored in `./DMRT/multifasta/dmrt_iso2_multifasta.fasta`
 
-#### 3.6. Phylogenetic analysis
+#### 2.3.6. Phylogenetic analysis
 
 Phylogenetic trees of the DMRT sequences were performed with IQtree and raxml.
 
