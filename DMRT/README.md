@@ -1,8 +1,14 @@
 # *dmrt* analysis
 
-### 1. Selection of *dmrt* transcripts
+Note: analysis conducted within folder `~/Gibbosus/DMRT`
 
-Unique clustered isoform transcripts (`./isoseq/OV210_03.flnc.clustered.hq.fasta`) mapping to the *dmrt* genes were manually selected in JBrowse. Four different isoforms were identified (iso1 - iso4) at the *dmrt* cluster at scaffold_11 and one at the *dmrt_G* cluster. Alignment of the isoforms in MEGA revealed that the *dmrt_G* isoform corresponded to isoform 2 at the dmrt (scaffold_11) cluster. 
+## 1. Identification and phylogenetic analysis of all *O. gibbosus* *dmrt* genes
+
+All putative *dmrt* genes of *O. gibbosus* were identified from the BRAKER-predicted gene set based on the presence of the term “Doublesex” in the functional annotation. Coding sequences were reconstructed using Iso-Seq transcripts when available; otherwise, transcripts predicted by StringTie were used.  
+
+### 1.1 Selection and translation of of *dmrt* isoseq transcripts
+
+For *dmrt* genes where Iso-Seq transcripts were available (scaffold_11 and scaffold_39), unique clustered isoform transcripts (`./isoseq/OV210_03.flnc.clustered.hq.fasta`) mapping to the *dmrt* genes were manually selected in JBrowse. Four different isoforms were identified (iso1 - iso4) at the *dmrt* cluster at scaffold_11 and one at the *dmrt_G* cluster at scaffold_39. Alignment of the isoforms in MEGA revealed that the *dmrt_G* isoform corresponds to isoform 2 at the dmrt (scaffold_11) cluster. 
 Isoforms were manually curated in MEGA and stored in `./DMRT/transcripts_isoseq`:
 
 - `dmrt_isoseq_full.fasta` (original isoseq full length *dmrt* transcripts, including UTR)
@@ -11,7 +17,17 @@ Isoforms were manually curated in MEGA and stored in `./DMRT/transcripts_isoseq`
 
 Visual inspection in MEGA showed that the coding sequences of isoform2 at scaffold_11 and scaffolds_39 aligned perfectly.  
 
-### 2. Mapping of *dmrt* transcripts
+### 1.2 Selection and translation of of *dmrt* stringtie transcripts
+
+Sequences of the *dmrt* genes that were not supported by Iso-Seq reads were retrieved from the StringTie predictions and manually selected in JBrowse. 
+
+## 2. Phylogenetic relationship of *dmrt* paralogs in relationship to the outgroup species
+
+### 2.1 Selection and translation of of *dmrt* isoseq transcripts
+
+=> See point 1.1.
+
+### 2.2 Mapping of *dmrt* transcripts
 
 Protein sequences of the *dmrt* isoseq transcripts were mapped to the genome with **miniprot**. Mapping were performed to both the entire genome - a reduced version of the genome was made that only includes the *dmrt* containg scaffolds i.e. scaffold_11 and scaffold_39 - and the G-locus (scaffold_39) only to identify the paralogous regions of the *dmrt* isoforms on the G-locus:
 
@@ -20,11 +36,11 @@ miniprot --gff ../genome/Ogib_2.0.reduced.fasta ../transcripts_isoseq/dmrt_isose
 miniprot --gff ../genome/scaffold_39.fasta ../transcripts_isoseq/dmrt_isoseq_coding.aa > dmrt_isoseq_coding_scaf39.gff
 ```
 
-### 3. Phylogenetic analysis of *dmrt* transcripts
+### 2.3. Phylogenetic analysis of *dmrt* transcripts
 
 We assessed the phylogenetic relationship between the two *dmrt* paralogs in relation to their sequence at the outgroup species. Due to the clear alignment of the different exons of isoform2, the analysis was restricted to this isoform only.  
 
-#### 3.1. Preparation of BED files
+#### 2.3.1. Preparation of BED files
 
 Three BED files were generated from the `dmrt_isoseq_coding.gff` file for downstream analyses:
 
@@ -32,7 +48,7 @@ Three BED files were generated from the `dmrt_isoseq_coding.gff` file for downst
 - `dmrt_iso2_coding_s11.bed` (BED file with the exons of isoform2 at s11)
 - `dmrt_iso2_coding_s39.bed` (BED file with the exons of isoform2 at s39)
 
-#### 3.2. SNP calling
+#### 2.3.2. SNP calling
 
 Reconstruction of the *dmrt* isoform 2 sequences for all individuals, including outgroups, was performed via SNP calling using BCFtools. Because the *dmrt* gene has two paralogs, sequencing reads from outgroup species, presumed to have only a single *dmrt* copy, may map equally well to both copies, resulting in low mapping quality scores. To prevent these reads from being discarded, we used raw BAM files without filtering for low-quality mappings. SNPs were called with BCFtools and restricted to the exonic regions of interest. We further required that genotypes be called as heterozygous or homozygous for the alternative allele only if supported by at least two reads carrying the alternative allele; positions with only a single supporting read were called homozygous for the reference allele. This approach minimizes the risk of calling sequencing errors as heterozygous sites. SNP calling and filtering were performed using the following script:
 
@@ -64,7 +80,7 @@ Output files are in./DMRT/vcf:
 `Ogib2_0.dmrt_iso2.raw.vcf.gz`
 `Ogib2_0.dmrt_iso2.noindel.vcf.gz`
 
-#### 3.3. Reconstructing individual *dmrt* Sequences
+#### 2.3.3. Reconstructing individual *dmrt* Sequences
 
 Individual *dmrt* sequences were reconstructed based on the genotypes in `Ogib2_0.dmrt_iso2.noindel.vcf.gz` with `bcftools consensus` with the following script: 
 
@@ -128,7 +144,7 @@ done
 
 echo "Concatenated multi-fasta written to $output_file"
 ```
-#### 3.4. Obtaining the *dmrt* Sequences for outgroup species *Hylyphantes graminicola*
+#### 2.3.4. Obtaining the *dmrt* Sequences for outgroup species *Hylyphantes graminicola*
 
 Analysis performed in the `./DMRT/hgram` folder. Map the *dmrt* coding region to the *H. graminicola* reference genome with miniprot:
 
