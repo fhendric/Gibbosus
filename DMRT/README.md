@@ -6,7 +6,7 @@ Note: analysis conducted within folder `~/Gibbosus/DMRT`
 
 All putative *dmrt* genes of *O. gibbosus* were identified from the BRAKER-predicted gene set based on the presence of the term “Doublesex” in the functional annotation. Coding sequences were reconstructed using Iso-Seq transcripts when available; otherwise, transcripts predicted by StringTie were used.  
 
-### 1.1 Selection and translation of of *dmrt* isoseq transcripts
+### 1.1 Selection and translation of *dmrt* isoseq transcripts
 
 For *dmrt* genes where Iso-Seq transcripts were available (scaffold_11 and scaffold_39), unique clustered isoform transcripts (`./isoseq/OV210_03.flnc.clustered.hq.fasta`) mapping to the *dmrt* genes were manually selected in JBrowse. Four different isoforms were identified (iso1 - iso4) at the *dmrt* cluster at scaffold_11 and one at the *dmrt_G* cluster at scaffold_39. Alignment of the isoforms in MEGA revealed that the *dmrt_G* isoform corresponds to isoform 2 at the dmrt (scaffold_11) cluster. 
 Isoforms were manually curated in MEGA and stored in `./DMRT/transcripts_isoseq`:
@@ -17,7 +17,7 @@ Isoforms were manually curated in MEGA and stored in `./DMRT/transcripts_isoseq`
 
 Visual inspection in MEGA showed that the coding sequences of isoform2 at scaffold_11 and scaffolds_39 aligned perfectly.  
 
-### 1.2 Selection and translation of of *dmrt* stringtie transcripts
+### 1.2 Selection and translation of *dmrt* stringtie transcripts
 
 Sequences of the *dmrt* genes that were not supported by Iso-Seq reads were retrieved from the StringTie predictions and manually selected in JBrowse. Transcript sequences were then translated using TransDecoder:
 
