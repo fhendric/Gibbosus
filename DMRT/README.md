@@ -19,7 +19,19 @@ Visual inspection in MEGA showed that the coding sequences of isoform2 at scaffo
 
 ### 1.2 Selection and translation of of *dmrt* stringtie transcripts
 
-Sequences of the *dmrt* genes that were not supported by Iso-Seq reads were retrieved from the StringTie predictions and manually selected in JBrowse. 
+Sequences of the *dmrt* genes that were not supported by Iso-Seq reads were retrieved from the StringTie predictions and manually selected in JBrowse. Transcript sequences were then translated using TransDecoder:
+
+```bash
+module load TransDecoder
+TransDecoder.LongOrfs -t dmrt_stringtie_full.fasta
+TransDecoder.Predict  -t dmrt_stringtie_full.fasta --no_refine_starts
+```
+Resulting files `dmrt_stringtie_full.fasta.transdecoder.cds` and `dmrt_stringtie_full.fasta.transdecoder.pep` were then renamed, resulting in the following three StringTie transcript files:
+
+- `dmrt_stringtie_full.fasta` (original stringtie full length *dmrt* transcripts, including UTR)
+- `dmrt_stringtie_coding.fasta` (renamed `dmrt_stringtie_full.fasta.transdecoder.cds`file with coding sequence of *dmrt* transcripts)
+- `dmrt_stringtie_coding.aa` (renamed `dmrt_stringtie_full.fasta.transdecoder.pep` file with translated coding sequence of *dmrt* transcripts)
+
 
 ## 2. Phylogenetic relationship of *dmrt* paralogs in relationship to the outgroup species
 
