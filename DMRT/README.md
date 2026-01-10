@@ -19,7 +19,7 @@ Visual inspection in MEGA showed that the coding sequences of isoform2 at scaffo
 
 ### 1.2 Selection and translation of *dmrt* stringtie transcripts
 
-Sequences of the *dmrt* genes that were not supported by Iso-Seq reads were retrieved from the StringTie predictions and manually selected in JBrowse. Transcript sequences were then translated using TransDecoder:
+Sequences of the *dmrt* genes that were not supported by Iso-Seq reads were retrieved from the StringTie predictions and manually selected in JBrowse. Transcript sequences were then translated using TransDecoder and stored in `./DMRT/transcripts_stringtie`::
 
 ```bash
 module load TransDecoder
