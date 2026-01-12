@@ -9,7 +9,7 @@ All putative *dmrt* genes of *O. gibbosus* were identified from the BRAKER-predi
 ### 1.1 Selection and translation of *dmrt* isoseq transcripts
 
 For *dmrt* genes where Iso-Seq transcripts were available (scaffold_11 and scaffold_39), unique clustered isoform transcripts (`./isoseq/OV210_03.flnc.clustered.hq.fasta`) mapping to the *dmrt* genes were manually selected in JBrowse. Four different isoforms were identified (iso1 - iso4) at the *dmrt* cluster at scaffold_11 and one at the *dmrt_G* cluster at scaffold_39. Alignment of the isoforms in MEGA revealed that the *dmrt_G* isoform corresponds to isoform 2 at the dmrt (scaffold_11) cluster. 
-Isoforms were manually curated in MEGA and stored in `./DMRT/transcripts_isoseq`:
+Isoforms were manually curated in MEGA and stored in `./DMRT/transcripts/transcripts_isoseq`:
 
 - `dmrt_isoseq_full.fasta` (original isoseq full length *dmrt* transcripts, including UTR)
 - `dmrt_isoseq_coding.fasta` (coding sequence of *dmrt* transcripts)
@@ -19,7 +19,7 @@ Visual inspection in MEGA showed that the coding sequences of isoform2 at scaffo
 
 ### 1.2 Selection and translation of *dmrt* stringtie transcripts
 
-Sequences of the *dmrt* genes that were not supported by Iso-Seq reads were retrieved from the StringTie predictions and manually selected in JBrowse. Transcript sequences were then translated using TransDecoder and stored in `./DMRT/transcripts_stringtie`::
+Sequences of the *dmrt* genes that were not supported by Iso-Seq reads were retrieved from the StringTie predictions and manually selected in JBrowse. Transcript sequences were then translated using TransDecoder and stored in `./DMRT/transcripts/transcripts_stringtie`:
 
 ```bash
 module load TransDecoder
@@ -32,6 +32,9 @@ Resulting files `dmrt_stringtie_full.fasta.transdecoder.cds` and `dmrt_stringtie
 - `dmrt_stringtie_coding.fasta` (renamed `dmrt_stringtie_full.fasta.transdecoder.cds`file with coding sequence of *dmrt* transcripts)
 - `dmrt_stringtie_coding.aa` (renamed `dmrt_stringtie_full.fasta.transdecoder.pep` file with translated coding sequence of *dmrt* transcripts)
 
+### 1.3 Alignment of *dmrt* transcripts
+
+IsoSeq and StringTie transcripts were concantenated and stored in `./DMRT/transcripts/transcripts_all/dmrt_all_coding.aa` and aligned with COBALT. 
 
 ## 2. Phylogenetic relationship of *dmrt* paralogs in relationship to the outgroup species
 
