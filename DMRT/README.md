@@ -4,11 +4,11 @@ Note: analysis conducted within folder `~/Gibbosus/DMRT`
 
 ## 1. Relationship among all *O. gibbosus* *dmrt* genes
 
-All putative *dmrt* genes of *O. gibbosus* were identified from the BRAKER-predicted gene set based on the presence of the term “Doublesex” in the functional annotation. Coding sequences were reconstructed using Iso-Seq transcripts when available; otherwise, transcripts predicted by StringTie were used.  
+All putative *dmrt* genes of *O. gibbosus* were identified from the BRAKER-predicted gene set (i) based on the presence of the term “Doublesex” in the functional annotation and (ii) by aligning the Dmrt sequences of *Parasteatoda tepidariorum*. Coding sequences were reconstructed using Iso-Seq transcripts, StringTie transcripts and aligned *P. tepidariorum* sequences.  
 
 ### 1.1 Selection and translation of *dmrt* isoseq transcripts
 
-For *dmrt* genes where Iso-Seq transcripts were available (scaffold_11 and scaffold_39), unique clustered isoform transcripts (`./isoseq/OV210_03.flnc.clustered.hq.fasta`) mapping to the *dmrt* genes were manually selected in JBrowse. Four different isoforms were identified (iso1 - iso4) at the *dmrt* cluster at scaffold_11 and one at the *dmrt_G* cluster at scaffold_39. Alignment of the isoforms in MEGA revealed that the *dmrt_G* isoform corresponds to isoform 2 at the dmrt (scaffold_11) cluster. 
+For *dmrt* genes where Iso-Seq transcripts were available (scaffold_11 and scaffold_39), unique clustered isoform transcripts (`./isoseq/OV210_03.flnc.clustered.hq.fasta`) mapping to the *dmrt* genes were manually selected in JBrowse. Multiple isoforms were identified at the *dmrt* cluster at scaffold_11 and the *dmrt_G* cluster at scaffold_39. Alignment of the isoforms in MEGA revealed that the *dmrt_G* isoform corresponds to isoform 2 at the dmrt (scaffold_11) cluster. 
 Isoforms were manually curated in MEGA and stored in `./DMRT/transcripts/transcripts_isoseq`:
 
 - `dmrt_isoseq_full.fasta` (original isoseq full length *dmrt* transcripts, including UTR)
@@ -34,7 +34,8 @@ Resulting files `dmrt_stringtie_full.fasta.transdecoder.cds` and `dmrt_stringtie
 
 ### 1.3 Alignment of *dmrt* transcripts
 
-IsoSeq and StringTie transcripts were concantenated and stored in `./DMRT/transcripts/transcripts_all/dmrt_all_coding.aa` and aligned with COBALT. 
+IsoSeq and StringTie transcripts were merged and stored in `./DMRT/transcripts/transcripts_all/dmrt_all_coding.aa` and aligned with COBALT together with the Dmrt genes of P. tepidariarum to identify the different Dmrt genes. 
+
 
 ## 2. Phylogenetic relationship of *dmrt* paralogs in relationship to the outgroup species
 
