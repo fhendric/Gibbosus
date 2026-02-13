@@ -45,7 +45,7 @@ Sequences of all *dmrt* genes were combined and stored in ´./DMRT/transcripts/t
 - DmrtL2A-G
 - DmrtL2B_G and DmrtL2D_G
 
-Final sequences and stored under:
+The final set af all *dmrt* genes are compiled in the following files:
 - `dmrt_all_full.fasta` (full length sequences of all *dmrt* genes, including UTR)
 - `dmrt_all_coding.fasta` (coding sequences of all *dmrt* genes)
 - `dmrt_all_coding.aa` (peptide sequences of all *dmrt* genes)
