@@ -8,14 +8,12 @@ All putative *dmrt* genes of *O. gibbosus* were identified from the BRAKER-predi
 
 ### 1.1 Selection and translation of *dmrt* isoseq transcripts
 
-For *dmrt* genes where Iso-Seq transcripts were available (scaffold_11 and scaffold_39), unique clustered isoform transcripts (`./isoseq/OV210_03.flnc.clustered.hq.fasta`) mapping to the *dmrt* genes were manually selected in JBrowse. Multiple isoforms were identified at the *dmrt* cluster at scaffold_11 and the *dmrt_G* cluster at scaffold_39. Alignment of the isoforms in MEGA revealed that the *dmrt_G* isoform corresponds to isoform 2 at the dmrt (scaffold_11) cluster. 
-Isoforms were manually curated in MEGA and stored in `./DMRT/transcripts/transcripts_isoseq`:
+For *dmrt* genes where Iso-Seq transcripts were available (scaffold_11 and scaffold_39), unique clustered isoform transcripts (`./isoseq/OV210_03.flnc.clustered.hq.fasta`) mapping to the *dmrt* genes were manually selected in JBrowse. Multiple isoforms were identified at the *dmrt* cluster at scaffold_11 and the hunch-specific *dmrt* cluster at scaffold_39. 
+Selected IsoSeq transcripts are stored in `./DMRT/transcripts/transcripts_isoseq`:
 
 - `dmrt_isoseq_full.fasta` (original isoseq full length *dmrt* transcripts, including UTR)
 - `dmrt_isoseq_coding.fasta` (coding sequence of *dmrt* transcripts)
 - `dmrt_isoseq_coding.aa` (translated coding sequence of *dmrt* transcripts)
-
-Visual inspection in MEGA showed that the coding sequences of isoform2 at scaffold_11 and scaffolds_39 aligned perfectly.  
 
 ### 1.2 Selection and translation of *dmrt* stringtie transcripts
 
@@ -32,8 +30,11 @@ Resulting files `dmrt_stringtie_full.fasta.transdecoder.cds` and `dmrt_stringtie
 - `dmrt_stringtie_coding.fasta` (renamed `dmrt_stringtie_full.fasta.transdecoder.cds`file with coding sequence of *dmrt* transcripts)
 - `dmrt_stringtie_coding.aa` (renamed `dmrt_stringtie_full.fasta.transdecoder.pep` file with translated coding sequence of *dmrt* transcripts)
 
+### 1.3 Selection of *dmrt* genes without transcript evidence
 
-### 1.3 Compilation of all *dmrt* genes
+Sequences of the *dmrt* genes that were not supported by Iso-Seq of StringTie predictions were obtained from the Braker predicted coding sequences
+  
+### 1.4 Compilation of all *dmrt* genes
 
 Sequences of all *dmrt* genes were combined and stored in ´./DMRT/transcripts/transcripts_all/` and renamed based on homology or alignment with *P. tepidariorum* sequences resulting in the following 14 Dmrt genes:
 
@@ -49,11 +50,11 @@ Final sequences and stored under:
 - `dmrt_all_coding.fasta` (coding sequences of all *dmrt* genes)
 - `dmrt_all_coding.aa` (peptide sequences of all *dmrt* genes)
   
-### 1.4 Alignment of *O.gibbosus* and *P. tepidariorum* *dmrt* transcripts
+### 1.5 Alignment of *O.gibbosus* and *P. tepidariorum* *dmrt* transcripts
 
-Peptide sequences of the *O. gibbosus* and *P. tepidariorum* *dmrt* genes were combined and aligned with COBALT and the alignment stored under´./DMRT/transcripts/transcripts_all/dmrt_all_coding.cobalt.fasta`
+Peptide sequences of the *O. gibbosus* and *P. tepidariorum* *dmrt* genes were combined and aligned with COBALT. The alignment was stored under ´./DMRT/transcripts/transcripts_all/dmrt_all_coding.cobalt.fasta`
 
-### 1.5 Identification of all *dmrtL*2 paralogs in the hunch-specific sequence
+### 1.6 Identification of all *dmrtL*2 paralogs in the hunch-specific sequence
 
 We identified the presence of all DmrtL2 genes within the hunch-specific sequence by aligning the *dmrtL*2 coding sequences to the hunch-specific scaffold harboring the duplicated *dmrtL*2 cluster (scaffold_39) with miniprot:
 
