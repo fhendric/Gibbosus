@@ -59,7 +59,7 @@ Peptide sequences of the *O. gibbosus* and *P. tepidariorum* *dmrt* genes were c
 We identified the presence of all DmrtL2 genes within the hunch-specific sequence by aligning the *dmrtL*2 coding sequences to the hunch-specific scaffold harboring the duplicated *dmrtL*2 cluster (scaffold_39) with miniprot:
 
 ```bash
-miniprot scaffold_39.fasta ../../transcripts/transcripts_all/dmrt_all_coding.aa --gtf --trans > dmrt_all_coding.s_39.gtf
+miniprot scaffold_39.fasta ./transcripts/transcripts_all/dmrt_all_coding.aa --gtf --trans > ./miniprot/dmrt_vs_scaffold_39/dmrt_all_coding.s_39.gtf
 ```
 
 
