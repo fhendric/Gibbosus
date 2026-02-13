@@ -32,7 +32,19 @@ Resulting files `dmrt_stringtie_full.fasta.transdecoder.cds` and `dmrt_stringtie
 - `dmrt_stringtie_coding.fasta` (renamed `dmrt_stringtie_full.fasta.transdecoder.cds`file with coding sequence of *dmrt* transcripts)
 - `dmrt_stringtie_coding.aa` (renamed `dmrt_stringtie_full.fasta.transdecoder.pep` file with translated coding sequence of *dmrt* transcripts)
 
-### 1.3 Alignment of *dmrt* transcripts
+
+### 1.3 Compiling of *dmrt* genes
+
+All *dmrt* transcripts were combined and stored in `./DMRT/transcripts/transcripts_all/` and renamed based on homology/alignment with P. tepidariorum sequences resulting in the following Dmrt genes:
+- 
+
+resulting in the following three StringTie transcript files:
+
+- `dmrt_all_full.fasta` (full length *dmrt* transcripts, including UTR)
+- `dmrt_all_coding.fasta` (coding sequences of all *dmrt* transcripts)
+- `dmrt_all_coding.aa` (renamed `dmrt_stringtie_full.fasta.transdecoder.pep` file with translated coding sequence of *dmrt* transcripts)
+  
+### 1.4 Alignment of *dmrt* transcripts
 
 IsoSeq and StringTie transcripts were merged and stored in `./DMRT/transcripts/transcripts_all/dmrt_all_coding.aa` and aligned with COBALT together with the Dmrt genes of P. tepidariarum to identify the different Dmrt genes. 
 
