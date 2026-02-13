@@ -4,7 +4,7 @@ Note: analysis conducted within folder `~/Gibbosus/DMRT`
 
 ## 1. Relationship among all *O. gibbosus* *dmrt* genes
 
-All putative *dmrt* genes of *O. gibbosus* were identified from the BRAKER-predicted gene set (i) based on the presence of the term “Doublesex” in the functional annotation and (ii) by aligning the Dmrt sequences of *Parasteatoda tepidariorum*. Coding sequences were reconstructed using Iso-Seq transcripts, StringTie transcripts and aligned *P. tepidariorum* sequences.  
+All putative *dmrt* genes of *O. gibbosus* were identified from the BRAKER-predicted gene set (i) based on the presence of the term “Doublesex” in the functional annotation and (ii) by aligning the Dmrt sequences of *Parasteatoda tepidariorum*. If available, coding sequences were reconstructed using Iso-Seq transcripts, StringTie transcripts and aligned *P. tepidariorum* sequences.  
 
 ### 1.1 Selection and translation of *dmrt* isoseq transcripts
 
@@ -33,20 +33,34 @@ Resulting files `dmrt_stringtie_full.fasta.transdecoder.cds` and `dmrt_stringtie
 - `dmrt_stringtie_coding.aa` (renamed `dmrt_stringtie_full.fasta.transdecoder.pep` file with translated coding sequence of *dmrt* transcripts)
 
 
-### 1.3 Compiling of *dmrt* genes
+### 1.3 Compilation of all *dmrt* genes
 
-All *dmrt* transcripts were combined and stored in `./DMRT/transcripts/transcripts_all/` and renamed based on homology/alignment with P. tepidariorum sequences resulting in the following Dmrt genes:
-- 
+Sequences of all *dmrt* genes were combined and stored in ´./DMRT/transcripts/transcripts_all/` and renamed based on homology or alignment with *P. tepidariorum* sequences resulting in the following 14 Dmrt genes:
 
-resulting in the following three StringTie transcript files:
+- Dmrt11E
+- Dmrt93B
+- Dmrt99B
+- DmrtL1A-B
+- DmrtL2A-G
+- DmrtL2B_G and DmrtL2D_G
 
-- `dmrt_all_full.fasta` (full length *dmrt* transcripts, including UTR)
-- `dmrt_all_coding.fasta` (coding sequences of all *dmrt* transcripts)
-- `dmrt_all_coding.aa` (renamed `dmrt_stringtie_full.fasta.transdecoder.pep` file with translated coding sequence of *dmrt* transcripts)
+Final sequences and stored under:
+- `dmrt_all_full.fasta` (full length sequences of all *dmrt* genes, including UTR)
+- `dmrt_all_coding.fasta` (coding sequences of all *dmrt* genes)
+- `dmrt_all_coding.aa` (peptide sequences of all *dmrt* genes)
   
-### 1.4 Alignment of *dmrt* transcripts
+### 1.4 Alignment of *O.gibbosus* and *P. tepidariorum* *dmrt* transcripts
 
-IsoSeq and StringTie transcripts were merged and stored in `./DMRT/transcripts/transcripts_all/dmrt_all_coding.aa` and aligned with COBALT together with the Dmrt genes of P. tepidariarum to identify the different Dmrt genes. 
+Peptide sequences of the *O. gibbosus* and *P. tepidariorum* *dmrt* genes were combined and aligned with COBALT and the alignment stored under´./DMRT/transcripts/transcripts_all/dmrt_all_coding.cobalt.fasta`
+
+### 1.5 Identification of all *dmrtL*2 paralogs in the hunch-specific sequence
+
+We identified the presence of all DmrtL2 genes within the hunch-specific sequence by aligning the *dmrtL*2 coding sequences to the hunch-specific scaffold harboring the duplicated *dmrtL*2 cluster (scaffold_39) with miniprot:
+
+´´´bash
+miniprot scaffold_39.fasta ../../transcripts/transcripts_all/dmrt_all_coding.aa --gtf --trans > dmrt_all_coding.s_39.gtf
+```
+
 
 
 ## 2. Phylogenetic relationship of *dmrt* paralogs in relationship to the outgroup species
