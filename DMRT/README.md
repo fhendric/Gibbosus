@@ -136,7 +136,7 @@ module load BEDTools
 SAMPLE=$(sed -n "${PBS_ARRAYID}p" ./samples/samples.txt)
 
 # Define directories and files
-GENOME="/kyukon/scratch/gent/vo/000/gvo00032/Gibbosus/DMRT_snps/genome/Ogib_2.0.reduced.fasta"
+GENOME="/kyukon/scratch/gent/vo/000/gvo00032/Gibbosus/DMRT/genome/Ogib_2.0.reduced.fasta"
 VCF_NOINDEL="./vcf/Ogib2_0.dmrtL2.noindel.vcf.gz"
 BED="./bed/dmrtL2_CDS.bed"
 CONSENSUS="./consensus"
@@ -160,7 +160,7 @@ CONSENSUS="./consensus"
 
 # Folder containing fasta files
 input_folder="$CONSENSUS"  
-output_file="dmrtL2_iso2_scaf39.fasta"
+output_file="dmrtL2_scaf39.fasta"
 
 # Empty the output file if it exists
 > "$output_file"
