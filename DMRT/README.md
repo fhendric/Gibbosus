@@ -54,13 +54,14 @@ The final set af all *dmrt* genes are compiled in the following files:
 
 Peptide sequences of the *O. gibbosus* and *P. tepidariorum* *dmrt* genes were combined and aligned with COBALT. The alignment was stored under ´./DMRT/transcripts/transcripts_all/dmrt_all_coding.cobalt.fasta`
 
-### 1.6 Identification of all *dmrtL*2 paralogs in the hunch-specific sequence
+### 1.6 Identification of putative *dmrtL*2 paralogs in the hunch-specific sequence
 
 We identified the presence of all DmrtL2 genes within the hunch-specific sequence by aligning the *dmrtL*2 coding sequences to the hunch-specific scaffold harboring the duplicated *dmrtL*2 cluster (scaffold_39) with miniprot:
 
 ´´´bash
 miniprot scaffold_39.fasta ../../transcripts/transcripts_all/dmrt_all_coding.aa --gtf --trans > dmrt_all_coding.s_39.gtf
-```
+´´´
+
 
 
 
