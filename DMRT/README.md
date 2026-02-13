@@ -72,31 +72,17 @@ miniprot scaffold_39.fasta ./transcripts/transcripts_all/dmrt_all_coding.aa --gt
 
 ## 2. Phylogenetic relationship of *dmrt* paralogs in relationship to the outgroup species
 
-### 2.1 Selection and translation of of *dmrt* isoseq transcripts
+### 2.1. Phylogenetic analysis of *dmrt* transcripts
 
-=> See point 1.1.
-
-### 2.2 Mapping of *dmrt* transcripts
-
-Protein sequences of the *dmrt* isoseq transcripts were mapped to the genome with **miniprot**. Mapping were performed to both the entire genome - a reduced version of the genome was made that only includes the *dmrt* containg scaffolds i.e. scaffold_11 and scaffold_39 - and the G-locus (scaffold_39) only to identify the paralogous regions of the *dmrt* isoforms on the G-locus:
-
-```bash
-miniprot --gff ../genome/Ogib_2.0.reduced.fasta ../transcripts_isoseq/dmrt_isoseq_coding.aa > dmrt_isoseq_coding.gff
-miniprot --gff ../genome/scaffold_39.fasta ../transcripts_isoseq/dmrt_isoseq_coding.aa > dmrt_isoseq_coding_scaf39.gff
-```
-
-### 2.3. Phylogenetic analysis of *dmrt* transcripts
-
-We assessed the phylogenetic relationship between the two *dmrt* paralogs in relation to their sequence at the outgroup species. Due to the clear alignment of the different exons of isoform2, the analysis was restricted to this isoform only.  
+We assessed the phylogenetic relationship between the two *dmrt* paralogs in relation to their sequence at the outgroup species. 
 
 #### 2.3.1. Preparation of BED files
 
-Three BED files were generated from the `dmrt_isoseq_coding.gff` file for downstream analyses:
+A BED files was generated that includes all exons of the *dmrtL*2 clusters on scaffold_11 and scaffold_39. Location of the exons was inferred from the miniprot mappings specified in 1.4 (´./miniprot/dmrt_vs_genome/dmrt_all_coding.gtf´) and 1.6 (`./miniprot/dmrt_vs_scaffold_39/dmrt_all_coding.s_39.gtf`).
 
-- `dmrt_iso2_coding.bed` (BED file with the exons of isoform2 at both s11 and s39)
-- `dmrt_iso2_coding_s11.bed` (BED file with the exons of isoform2 at s11)
-- `dmrt_iso2_coding_s39.bed` (BED file with the exons of isoform2 at s39)
-
+```bash
+./bed/dmrtL2_CDS.bed
+```
 #### 2.3.2. SNP calling
 
 Reconstruction of the *dmrt* isoform 2 sequences for all individuals, including outgroups, was performed via SNP calling using BCFtools. Because the *dmrt* gene has two paralogs, sequencing reads from outgroup species, presumed to have only a single *dmrt* copy, may map equally well to both copies, resulting in low mapping quality scores. To prevent these reads from being discarded, we used raw BAM files without filtering for low-quality mappings. SNPs were called with BCFtools and restricted to the exonic regions of interest. We further required that genotypes be called as heterozygous or homozygous for the alternative allele only if supported by at least two reads carrying the alternative allele; positions with only a single supporting read were called homozygous for the reference allele. This approach minimizes the risk of calling sequencing errors as heterozygous sites. SNP calling and filtering were performed using the following script:
