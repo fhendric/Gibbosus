@@ -2,7 +2,7 @@
 
 Note: analysis conducted within folder `~/Gibbosus/DMRT`
 
-## 1. Relationship among all *O. gibbosus* *dmrt* genes
+## 1. Identfication of all putative *O. gibbosus* *dmrt* genes
 
 All putative *dmrt* genes of *O. gibbosus* were identified from the BRAKER-predicted gene set (i) based on the presence of the term “Doublesex” in the functional annotation and (ii) by aligning the Dmrt sequences of *Parasteatoda tepidariorum*. If available, coding sequences were reconstructed using Iso-Seq transcripts, StringTie transcripts and aligned *P. tepidariorum* sequences.  
 
