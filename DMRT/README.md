@@ -85,7 +85,7 @@ A BED files was generated that includes all exons of the *dmrtL*2 clusters on sc
 ```
 #### 2.3.2. SNP calling
 
-Reconstruction of the *dmrt* isoform 2 sequences for all individuals, including outgroups, was performed via SNP calling using BCFtools. Because the *dmrt* gene has two paralogs, sequencing reads from outgroup species, presumed to have only a single *dmrt* copy, may map equally well to both copies, resulting in low mapping quality scores. To prevent these reads from being discarded, we used raw BAM files without filtering for low-quality mappings. SNPs were called with BCFtools and restricted to the exonic regions of interest. We further required that genotypes be called as heterozygous or homozygous for the alternative allele only if supported by at least two reads carrying the alternative allele; positions with only a single supporting read were called homozygous for the reference allele. This approach minimizes the risk of calling sequencing errors as heterozygous sites. SNP calling and filtering were performed using the following script:
+Reconstruction of the *dmrt* exons for all individuals, including outgroups, was performed via SNP calling using BCFtools. Because the *dmrt* gene has two paralogs, sequencing reads from outgroup species, presumed to have only a single *dmrt* copy, may map equally well to both copies, resulting in low mapping quality scores. To prevent these reads from being discarded, we used raw BAM files without filtering for low-quality mappings. SNPs were called with BCFtools and restricted to the exonic regions of interest. We further required that genotypes be called as heterozygous or homozygous for the alternative allele only if supported by at least two reads carrying the alternative allele; positions with only a single supporting read were called homozygous for the reference allele. This approach minimizes the risk of calling sequencing errors as heterozygous sites. SNP calling and filtering were performed using the following script:
 
 ```bash
 #!/bin/bash
@@ -101,9 +101,9 @@ module load BCFtools
 # Define directories and files
 GENOME="/kyukon/scratch/gent/vo/000/gvo00032/Gibbosus/fasta/Ogib_2.0.fasta"
 BAM="/kyukon/scratch/gent/vo/000/gvo00032/Gibbosus/bam_reseq/raw"
-VCF_RAW="./vcf/Ogib2_0.dmrt_iso2.raw.vcf.gz"
-VCF_NOINDEL="./vcf/Ogib2_0.dmrt_iso2.noindel.vcf.gz"
-BED="./bed/dmrt_iso2_coding.bed"
+VCF_RAW="./vcf/Ogib2_0.dmrtL2.raw.vcf.gz"
+VCF_NOINDEL="./vcf/Ogib2_0.dmrtL2.noindel.vcf.gz"
+BED="./bed/dmrtL2_CDS.bed"
 
 # SNP calling
 bcftools mpileup -R "$BED" -a AD,DP,SP -Ou -f "$GENOME" "$BAM"/D1086_G.bam "$BAM"/D1090_G.bam "$BAM"/D1091_T.bam "$BAM"/D601_T.bam "$BAM"/H002_T.bam "$BAM"/H007_G.bam "$BAM"/Ofusc.bam "$BAM"/Oretu.bam "$BAM"/Otril.bam "$BAM"/OV001_G.bam "$BAM"/OV002_T.bam "$BAM"/OV208_T.bam "$BAM"/OV213_G.bam "$BAM"/PO002_T.bam "$BAM"/PO004_G.bam "$BAM"/PU001_G.bam "$BAM"/PU002_T.bam "$BAM"/SE001_G.bam "$BAM"/SE003_T.bam "$BAM"/W791_G.bam "$BAM"/W815_T.bam "$BAM"/W816_G.bam "$BAM"/W818_T.bam | bcftools call -m -f GQ,GP -Oz -o "$VCF_RAW"
@@ -112,12 +112,12 @@ bcftools view -V indels,mnps "$VCF_RAW" -Ou | bcftools +setGT -Ou  -- -t q -n 0 
 ```
 Output files are in./DMRT/vcf:
 
-`Ogib2_0.dmrt_iso2.raw.vcf.gz`
-`Ogib2_0.dmrt_iso2.noindel.vcf.gz`
+`Ogib2_0.dmrtL2.raw.vcf.gz`
+`Ogib2_0.dmrtL2.noindel.vcf.gz`
 
 #### 2.3.3. Reconstructing individual *dmrt* Sequences
 
-Individual *dmrt* sequences were reconstructed based on the genotypes in `Ogib2_0.dmrt_iso2.noindel.vcf.gz` with `bcftools consensus` with the following script: 
+Individual *dmrt* sequences were reconstructed based on the genotypes in `Ogib2_0.dmrtL2.noindel.vcf.gz` with `bcftools consensus` with the following script: 
 
 ```bash
 #!/bin/bash
@@ -137,8 +137,8 @@ SAMPLE=$(sed -n "${PBS_ARRAYID}p" ./samples/samples.txt)
 
 # Define directories and files
 GENOME="/kyukon/scratch/gent/vo/000/gvo00032/Gibbosus/DMRT_snps/genome/Ogib_2.0.reduced.fasta"
-VCF_NOINDEL="./vcf/Ogib2_0.dmrt_iso2.noindel.vcf.gz"
-BED="./bed/dmrt_iso2_coding.bed"
+VCF_NOINDEL="./vcf/Ogib2_0.dmrtL2.noindel.vcf.gz"
+BED="./bed/dmrtL2_CDS.bed"
 CONSENSUS="./consensus"
 
 # Generate consensus sequence
@@ -148,17 +148,19 @@ bcftools consensus --fasta-ref "$GENOME" --missing N --samples "$SAMPLE"  -o "$C
 samtools faidx "$CONSENSUS/${SAMPLE}.fa"
 
 # Extract regions from fasta
-bedtools getfasta -fi "$CONSENSUS/${SAMPLE}.fa" -bed ./bed/dmrt_iso2_coding_s11.bed -fo "$CONSENSUS/${SAMPLE}.scaffold_11.fa"
-bedtools getfasta -fi "$CONSENSUS/${SAMPLE}.fa" -bed ./bed/dmrt_iso2_coding_s39.bed -fo "$CONSENSUS/${SAMPLE}.scaffold_39.fa"
+bedtools getfasta -fi "$CONSENSUS/${SAMPLE}.fa" -bed ./bed/dmrtL2_CDS_s11.bed -fo "$CONSENSUS/${SAMPLE}.scaffold_11.fa"
+bedtools getfasta -fi "$CONSENSUS/${SAMPLE}.fa" -bed ./bed/dmrtL2_CDS_s39.bed -fo "$CONSENSUS/${SAMPLE}.scaffold_39.fa"
 ```
 Fasta files of scaffold_11 and scaffold_39 were then placed in the folders `./DMRT/consensus/scaffold_11` and `./DMRT/consensus/scaffold_39` respectively. A multifasta file that concatenates all sequences was generated with the script:
 
 ```bash
 #!/bin/bash
 
-# Folder containing your fasta files
-input_folder="."   # change to your folder
-output_file="dmrt_iso2_scaf39.fasta"
+CONSENSUS="./consensus"
+
+# Folder containing fasta files
+input_folder="$CONSENSUS"  
+output_file="dmrtL2_iso2_scaf39.fasta"
 
 # Empty the output file if it exists
 > "$output_file"
