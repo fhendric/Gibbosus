@@ -49,7 +49,13 @@ The final set af all *dmrt* genes are compiled in the following files:
 - `dmrt_all_full.fasta` (full length sequences of all *dmrt* genes, including UTR)
 - `dmrt_all_coding.fasta` (coding sequences of all *dmrt* genes)
 - `dmrt_all_coding.aa` (peptide sequences of all *dmrt* genes)
-  
+
+We also aligned the entire set of *dmrt* genes to the genome to identify the exact location of the coding sequences on the Ogib.2.0 genome:
+
+```bash
+miniprot ../fasta/Ogib_2.0.fasta ./transcripts/transcripts_all/dmrt_all_coding.aa --gtf --trans > ./miniprot/dmrt_vs_genome/dmrt_all_coding.gtf
+```
+
 ### 1.5 Alignment of *O.gibbosus* and *P. tepidariorum* *dmrt* transcripts
 
 Peptide sequences of the *O. gibbosus* and *P. tepidariorum* *dmrt* genes were combined and aligned with COBALT. The alignment was stored under ´./DMRT/transcripts/transcripts_all/dmrt_all_coding.cobalt.fasta`
@@ -61,7 +67,6 @@ We identified the presence of all DmrtL2 genes within the hunch-specific sequenc
 ```bash
 miniprot scaffold_39.fasta ./transcripts/transcripts_all/dmrt_all_coding.aa --gtf --trans > ./miniprot/dmrt_vs_scaffold_39/dmrt_all_coding.s_39.gtf
 ```
-
 
 
 
