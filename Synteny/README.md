@@ -26,6 +26,15 @@ minimap2 -x asm10 -N 0 $GENOME $QUERY > $OUT
 
 Unplaced contigs and alignment blocks < 20kb were filter from the paf files using the following commands.
 
-For the ```Ogib_1.0_vs_Ogib_2.0.synteny.paf``` :
+For ```Ogib_1.0_vs_Ogib_2.0.synteny.paf``` :
 
 ```less Ogib_1.0_vs_Ogib_2.0.synteny.paf | grep 'CM0332' | sed 's/scaffold_//'g | awk '$6<14' | awk '$11>20000' > Ogib_1.0_vs_Ogib_2.0.synteny.filt.paf```
+
+For ```Ogib_2.0_vs_Hgram.synteny.paf``` :
+
+```less Ogib_2.0_vs_Hgram.synteny.paf | sed 's/scaffold_//'g | awk '$6<14' | awk '$11>20000' > Ogib_2.0_vs_Hgram.synteny.filt.paf```
+
+## 3. Synteny plots in SyntenyPlotR
+
+
+
