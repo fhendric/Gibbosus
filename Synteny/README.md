@@ -34,7 +34,7 @@ For ```Ogib_2.0_vs_Hgram.synteny.paf``` :
 
 ```less Ogib_2.0_vs_Hgram.synteny.paf | sed 's/scaffold_//'g | awk '$6<14' | awk '$11>20000' > Ogib_2.0_vs_Hgram.synteny.filt.paf```
 
-## 3. Synteny plots in SyntenyPlotR
+## 3. Plot synteny plot with SyntenyPlotR
 
 
 
