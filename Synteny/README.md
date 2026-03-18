@@ -28,11 +28,11 @@ Unplaced contigs and alignment blocks < 20kb were filter from the paf files usin
 
 For ```Ogib_2.0_vs_Ogib_1.0.synteny.paf``` :
 
-```less Ogib_2.0_vs_Ogib_1.0.synteny.paf | grep 'CM0332' | sed 's/scaffold_//'g | awk '$6<14' | awk '$11>20000' > Ogib_2.0_vs_Ogib_1.0.synteny.filt.paf```
+```less Ogib_2.0_vs_Ogib_1.0.synteny.paf | grep 'CM0332' | sed 's/scaffold_//'g | awk '$12==60 && $6<14' && $11>20000' > Ogib_2.0_vs_Ogib_1.0.synteny.filt.paf```
 
 For ```Ogib_2.0_vs_Hgram.synteny.paf``` :
 
-```less Ogib_2.0_vs_Hgram.synteny.paf | sed 's/scaffold_//'g | awk '$1<14' | awk '$6<14' | awk '$11>20000' > Ogib_2.0_vs_Hgram.synteny.filt.paf```
+```sed 's/scaffold_//g' Ogib_2.0_vs_Hgram.synteny.paf | awk '$12==60 && $11>20000 && $1<14 && $6<14' > Ogib_2.0_vs_Hgram.synteny.filt.paf```
 
 ## 3. Plot synteny with SyntenyPlotR
 
